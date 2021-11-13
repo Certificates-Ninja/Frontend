@@ -14,9 +14,11 @@
     "@heroicons/react": "^1.0.5",
     "framer-motion": "^4.1.17",
     "next": "latest",
+    "rc-scroll-anim": "^2.7.6",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-parallax-tilt": "^1.5.74",
+    "react-scroll-parallax": "^2.4.0",
     "react-text-loop": "^2.3.0"
   },
   "devDependencies": {

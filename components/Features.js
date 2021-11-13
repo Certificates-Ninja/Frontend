@@ -1,6 +1,8 @@
 import React from "react";
+var ScrollAnim = require("rc-scroll-anim");
 
 export default function Features() {
+  var ScrollParallax = ScrollAnim.Parallax;
   return (
     <div className="flex-col">
       <div class="relative w-full px-8 bg-yellow-400 sm:py-32 md:py-20">
@@ -28,6 +30,7 @@ export default function Features() {
                   d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4"
                 ></path>
               </svg>
+
               <p className="text-lg ml-3 font-bold leading-5">
                 Powered by Blockchain and Web3
               </p>
