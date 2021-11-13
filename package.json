@@ -9,10 +9,15 @@
     "@chakra-ui/react": "^1.7.1",
     "@emotion/react": "^11.5.0",
     "@emotion/styled": "^11.3.0",
+    "@fontsource/poppins": "^4.5.0",
+    "@headlessui/react": "^1.4.2",
+    "@heroicons/react": "^1.0.5",
     "framer-motion": "^4.1.17",
     "next": "latest",
     "react": "^17.0.2",
-    "react-dom": "^17.0.2"
+    "react-dom": "^17.0.2",
+    "react-parallax-tilt": "^1.5.74",
+    "react-text-loop": "^2.3.0"
   },
   "devDependencies": {
     "autoprefixer": "^10.2.6",
