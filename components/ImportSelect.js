@@ -1,8 +1,54 @@
-import React from "react";
+import React, { useState } from "react";
 import { ProgressBar, Step } from "react-step-progress-bar";
 import "react-step-progress-bar/styles.css";
+import axios from "axios";
+import Router from "next/router";
 
 export default function ImportSelect() {
+  const [importType, setImportType] = useState("file");
+  const [csvFile, setCsvFile] = useState();
+  const [csvContent, setCsvContent] = useState();
+
+  function setIdentifier() {
+    if (!sessionStorage.getItem("identifierSet")) {
+      sessionStorage.setItem("identifierSet", true);
+      sessionStorage.setItem(
+        "identifierId",
+        Math.random().toString(36).substring(2, 20)
+      );
+    }
+  }
+
+  React.useEffect(() => {
+    setIdentifier();
+  });
+
+  function handleSubmit(e) {
+    e.preventDefault();
+
+    let formData = new FormData();
+    formData.append("identifier", sessionStorage.getItem("identifierId"));
+    formData.append("importType", importType);
+    formData.append("csvFile", csvFile);
+    formData.append("csvContent", csvContent);
+
+    axios
+      .post(process.env.NEXT_PUBLIC_BACKEND_DOMAIN + "/import", formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      })
+      .then(async function (response) {
+        sessionStorage.setItem("importComplete", true);
+        sessionStorage.setItem("csvPath", response.data.csvPath);
+
+        await Router.push("/certificate");
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }
+
   return (
     <div>
       <div className="overflow-hidden bg-yellow-200">
@@ -109,57 +155,67 @@ export default function ImportSelect() {
                     <select
                       class="w-full h-12 pl-3 text-sm border-gray-100 rounded-lg"
                       id="type"
+                      onChange={(e) => setImportType(e.target.value)}
+                      name="type"
                     >
-                      <option>Import as CSV</option>
-                      <option>Import as XLSV</option>
-                      <option>Copy and paste manually</option>
+                      <option value="file" selected={true}>
+                        Import as CSV
+                      </option>
+                      {/*<option>Import as XLSV</option>*/}
+                      <option value="paste">Copy and paste manually</option>
                     </select>
                     <br />
                     <br />
-                    <br />
-                    <div class="flex items-center justify-center bg-grey-lighter">
-                      <label class="w-screen flex flex-col items-center px-4 py-6 bg-white text-blue rounded-lg shadow-lg tracking-wide uppercase border border-blue cursor-pointer hover:text-yellow-400">
-                        <svg
-                          class="w-8 h-8"
-                          fill="currentColor"
-                          xmlns="http://www.w3.org/2000/svg"
-                          viewBox="0 0 20 20"
-                        >
-                          <path d="M16.88 9.1A4 4 0 0 1 16 17H5a5 5 0 0 1-1-9.9V7a3 3 0 0 1 4.52-2.59A4.98 4.98 0 0 1 17 8c0 .38-.04.74-.12 1.1zM11 11h3l-4-4-4 4h3v3h2v-3z" />
-                        </svg>
-                        <span class="mt-2 text-base leading-normal">
-                          Select a file
-                        </span>
-                        <input type="file" class="hidden" />
-                      </label>
-                    </div>
-                    <br />
-                    <br />
-                    <div>
-                      <label className="inline-block mb-2 font-medium">
-                        Copy and paste the participant info below
-                      </label>
-                      <textarea
-                        class="w-full p-3 text-sm border-gray-200 rounded-lg"
-                        placeholder="Example :
+
+                    {importType === "file" ? (
+                      <div class="flex items-center justify-center bg-grey-lighter">
+                        <label class="w-screen flex flex-col items-center px-4 py-6 bg-white text-blue rounded-lg shadow-lg tracking-wide uppercase border border-blue cursor-pointer hover:text-yellow-400">
+                          <svg
+                            class="w-8 h-8"
+                            fill="currentColor"
+                            xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 20 20"
+                          >
+                            <path d="M16.88 9.1A4 4 0 0 1 16 17H5a5 5 0 0 1-1-9.9V7a3 3 0 0 1 4.52-2.59A4.98 4.98 0 0 1 17 8c0 .38-.04.74-.12 1.1zM11 11h3l-4-4-4 4h3v3h2v-3z" />
+                          </svg>
+                          <span class="mt-2 text-base leading-normal">
+                            Select a file
+                          </span>
+                          <input
+                            type="file"
+                            class="hidden"
+                            name="csv_file"
+                            accept="text/csv"
+                            onChange={(e) => setCsvFile(e.target.files[0])}
+                          />
+                        </label>
+                      </div>
+                    ) : (
+                      <div>
+                        <label className="inline-block mb-2 font-medium">
+                          Copy and paste the participant info below
+                        </label>
+                        <textarea
+                          class="w-full p-3 text-sm border-gray-200 rounded-lg"
+                          placeholder="Example :
                         Guru, guru@mail.com"
-                        rows="8"
-                        id="message"
-                      ></textarea>
-                    </div>
-                    <br />
+                          rows="8"
+                          id="message"
+                          name="csv_content"
+                          onChange={(e) => setCsvContent(e.target.value)}
+                        ></textarea>
+                      </div>
+                    )}
                     <br />
                     <div className="mt-4 mb-2 sm:mb-4">
                       <button
                         type="submit"
                         className="inline-flex items-center justify-center w-full h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-black hover:bg-gray-700 focus:shadow-outline focus:outline-none"
+                        onClick={handleSubmit}
                       >
                         Continue
                       </button>
                     </div>
-                    <p className="text-xs text-gray-600 sm:text-sm">
-                      We respect your privacy. We do not store your credentials.
-                    </p>
                   </form>
                 </div>
               </div>

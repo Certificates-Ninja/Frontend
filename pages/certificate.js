@@ -16,7 +16,6 @@ export default function certificate() {
     <div className="flex-column bg-gradient-to-r from-yellow-200 via-emerald-200 to-yellow-200">
       <Navbar2 />
       <CertificateSelect />
-      <TemplateGallery />
       <Footer />
     </div>
   );

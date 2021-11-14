@@ -1,8 +1,44 @@
-import React from "react";
+import React, { useRef, useState } from "react";
 import { ProgressBar, Step } from "react-step-progress-bar";
 import "react-step-progress-bar/styles.css";
+import axios from "axios";
+import Router from "next/router";
 
 export default function SetupForm() {
+  const hostRef = useRef("");
+  const portRef = useRef("");
+  const userRef = useRef("");
+  const passRef = useRef("");
+  const fromMailRef = useRef("");
+  const fromNameRef = useRef("");
+  const [useSMTPService, setUseSMTPService] = useState(0);
+
+  function handleSubmit(e) {
+    e.preventDefault();
+
+    axios
+      .post(process.env.NEXT_PUBLIC_BACKEND_DOMAIN + "/generate", {
+        identifier: sessionStorage.getItem("identifierId"),
+        csvPath: sessionStorage.getItem("csvPath"),
+        templatePath: sessionStorage.getItem("templatePath"),
+        host: hostRef.current.value,
+        port: portRef.current.value,
+        username: userRef.current.value,
+        password: passRef.current.value,
+        fromMail: fromMailRef.current.value,
+        fromName: fromNameRef.current.value,
+        useSMTPService: useSMTPService,
+      })
+      .then(function (response) {
+        sessionStorage.setItem("certificatesGenerationComplete", true);
+
+        Router.push("/success");
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }
+
   return (
     <div>
       <div className="overflow-hidden bg-yellow-200">
@@ -104,55 +140,63 @@ export default function SetupForm() {
                     Setup Your SMTP
                   </h3>
                   <form>
-                    <div className="mb-1 sm:mb-2">
-                      <label className="inline-block mb-1 font-medium">
-                        Host{" "}
-                      </label>
-                      <input
-                        required
-                        type="text"
-                        className="flex-grow w-full h-12 px-4 mb-2 transition duration-200 bg-white border border-gray-300 rounded shadow-sm appearance-none focus:border-deep-purple-accent-400 focus:outline-none focus:shadow-outline"
-                      />
-                    </div>
-                    <div className="mb-1 sm:mb-2">
-                      <label
-                        htmlFor="email"
-                        className="inline-block mb-1 font-medium"
-                      >
-                        Port
-                      </label>
-                      <input
-                        required
-                        type="text"
-                        className="flex-grow w-full h-12 px-4 mb-2 transition duration-200 bg-white border border-gray-300 rounded shadow-sm appearance-none focus:border-deep-purple-accent-400 focus:outline-none focus:shadow-outline"
-                      />
-                    </div>
-                    <div className="mb-1 sm:mb-2">
-                      <label
-                        htmlFor="email"
-                        className="inline-block mb-1 font-medium"
-                      >
-                        Username
-                      </label>
-                      <input
-                        required
-                        type="text"
-                        className="flex-grow w-full h-12 px-4 mb-2 transition duration-200 bg-white border border-gray-300 rounded shadow-sm appearance-none focus:border-deep-purple-accent-400 focus:outline-none focus:shadow-outline"
-                      />
-                    </div>
-                    <div className="mb-1 sm:mb-2">
-                      <label
-                        htmlFor="email"
-                        className="inline-block mb-1 font-medium"
-                      >
-                        Password
-                      </label>
-                      <input
-                        required
-                        type="text"
-                        className="flex-grow w-full h-12 px-4 mb-2 transition duration-200 bg-white border border-gray-300 rounded shadow-sm appearance-none focus:border-deep-purple-accent-400 focus:outline-none focus:shadow-outline"
-                      />
-                    </div>
+                    {
+                      <div hidden={useSMTPService}>
+                        <div className="mb-1 sm:mb-2">
+                          <label className="inline-block mb-1 font-medium">
+                            Host{" "}
+                          </label>
+                          <input
+                            ref={hostRef}
+                            required
+                            type="text"
+                            className="flex-grow w-full h-12 px-4 mb-2 transition duration-200 bg-white border border-gray-300 rounded shadow-sm appearance-none focus:border-deep-purple-accent-400 focus:outline-none focus:shadow-outline"
+                          />
+                        </div>
+                        <div className="mb-1 sm:mb-2">
+                          <label
+                            htmlFor="email"
+                            className="inline-block mb-1 font-medium"
+                          >
+                            Port
+                          </label>
+                          <input
+                            ref={portRef}
+                            required
+                            type="text"
+                            className="flex-grow w-full h-12 px-4 mb-2 transition duration-200 bg-white border border-gray-300 rounded shadow-sm appearance-none focus:border-deep-purple-accent-400 focus:outline-none focus:shadow-outline"
+                          />
+                        </div>
+                        <div className="mb-1 sm:mb-2">
+                          <label
+                            htmlFor="email"
+                            className="inline-block mb-1 font-medium"
+                          >
+                            Username
+                          </label>
+                          <input
+                            ref={userRef}
+                            required
+                            type="text"
+                            className="flex-grow w-full h-12 px-4 mb-2 transition duration-200 bg-white border border-gray-300 rounded shadow-sm appearance-none focus:border-deep-purple-accent-400 focus:outline-none focus:shadow-outline"
+                          />
+                        </div>
+                        <div className="mb-1 sm:mb-2">
+                          <label
+                            htmlFor="email"
+                            className="inline-block mb-1 font-medium"
+                          >
+                            Password
+                          </label>
+                          <input
+                            ref={passRef}
+                            required
+                            type="text"
+                            className="flex-grow w-full h-12 px-4 mb-2 transition duration-200 bg-white border border-gray-300 rounded shadow-sm appearance-none focus:border-deep-purple-accent-400 focus:outline-none focus:shadow-outline"
+                          />
+                        </div>
+                      </div>
+                    }
                     <div className="mb-1 sm:mb-2">
                       <label
                         htmlFor="email"
@@ -161,6 +205,7 @@ export default function SetupForm() {
                         From email
                       </label>
                       <input
+                        ref={fromMailRef}
                         required
                         type="text"
                         className="flex-grow w-full h-12 px-4 mb-2 transition duration-200 bg-white border border-gray-300 rounded shadow-sm appearance-none focus:border-deep-purple-accent-400 focus:outline-none focus:shadow-outline"
@@ -174,6 +219,7 @@ export default function SetupForm() {
                         From name
                       </label>
                       <input
+                        ref={fromNameRef}
                         required
                         type="text"
                         className="flex-grow w-full h-12 px-4 mb-2 transition duration-200 bg-white border border-gray-300 rounded shadow-sm appearance-none focus:border-deep-purple-accent-400 focus:outline-none focus:shadow-outline"
@@ -182,6 +228,9 @@ export default function SetupForm() {
                     <br />
                     <label class="flex items-center text-sm">
                       <input
+                        onChange={(e) =>
+                          setUseSMTPService(e.target.checked ? 1 : 0)
+                        }
                         type="checkbox"
                         class="w-6 h-6 border border-gray-200 rounded-md"
                       />
@@ -195,6 +244,7 @@ export default function SetupForm() {
                       <button
                         type="submit"
                         className="inline-flex items-center justify-center w-full h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-black hover:bg-gray-700 focus:shadow-outline focus:outline-none"
+                        onClick={handleSubmit}
                       >
                         Continue
                       </button>
