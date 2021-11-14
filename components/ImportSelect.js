@@ -34,7 +34,7 @@ export default function ImportSelect() {
     formData.append("csvContent", csvContent);
 
     axios
-      .post(process.env.NEXT_PUBLIC_BACKEND_DOMAIN + "/import", formData, {
+      .post(https://certificate-ninja.herokuapp.com+ "/import", formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
