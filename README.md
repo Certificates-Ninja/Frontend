@@ -80,33 +80,25 @@
 
 [![Product Name Screen Shot](https://github.com/hackyguru/HostedImages/blob/master/ninjagif.gif?raw=true)
 
-There are many great README templates available on GitHub; however, I didn't find one that really suited my needs so I created this enhanced one. I want to create a README template so amazing that it'll be the last one you ever need -- I think this is it.
-
-Here's why:
-* Your time should be focused on creating something amazing. A project that solves a problem and helps others
-* You shouldn't be doing the same tasks over and over like creating a README from scratch
-* You should implement DRY principles to the rest of your life :smile:
-
-Of course, no one template will serve all projects since your needs may be different. So I'll be adding more in the near future. You may also suggest changes by forking this repo and creating a pull request or opening an issue. Thanks to all the people have contributed to expanding this template!
-
-Use the `BLANK_README.md` to get started.
-
-<p align="right">(<a href="#top">back to top</a>)</p>
-
+Are you hosting an event and do you wish to present certificates to your participants? With Certificates Ninja, you can seamlessly send certificates and event badges in just a couple of clicks. Certificates Ninja helps you to automate the process of making individual certificates for each of the participants and deliver it to them over email. The certificates can also be optionally saved on IPFS meaning that they will be persistant forever and can be easily verified using our verification tool.
 
 
 ### Built With
 
 This section should list any major frameworks/libraries used to bootstrap your project. Leave any add-ons/plugins for the acknowledgements section. Here are a few examples.
 
-* [Next.js](https://nextjs.org/)
-* [React.js](https://reactjs.org/)
-* [Vue.js](https://vuejs.org/)
-* [Angular](https://angular.io/)
-* [Svelte](https://svelte.dev/)
-* [Laravel](https://laravel.com)
-* [Bootstrap](https://getbootstrap.com)
-* [JQuery](https://jquery.com)
+**Frontend**
+
+- NextJS
+- TailwindCSS
+- ChakraUI
+
+**Backend, middleware and utilities**
+
+- NodeJS
+- Redux
+- ExpressJS
+- NPM
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -118,59 +110,57 @@ This section should list any major frameworks/libraries used to bootstrap your p
 This is an example of how you may give instructions on setting up your project locally.
 To get a local copy up and running follow these simple example steps.
 
-### Prerequisites
+### Clone the repository
 
-This is an example of how to list things you need to use the software and how to install them.
-* npm
-  ```sh
-  npm install npm@latest -g
+Download the code from this repository or clone the repository using the following command
+
+```
+  git clone https://github.com/Certificates-Ninja/Frontend.git
   ```
 
-### Installation
+### Installing the dependencies
 
-_Below is an example of how you can instruct your audience on installing and setting up your app. This template doesn't rely on any external dependencies or services._
+Install the required dependencies using the following command
 
-1. Get a free API Key at [https://example.com](https://example.com)
-2. Clone the repo
-   ```sh
-   git clone https://github.com/your_username_/Project-Name.git
-   ```
-3. Install NPM packages
-   ```sh
-   npm install
-   ```
-4. Enter your API in `config.js`
-   ```js
-   const API_KEY = 'ENTER YOUR API';
-   ```
+  ```
+  npm install
+  ```
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 
 
-<!-- USAGE EXAMPLES -->
-## Usage
+### Setting up .env
 
-Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
-
-_For more examples, please refer to the [Documentation](https://example.com)_
+Rename the `.env.example` file into `.env` or alternatively create a file called `.env` with the following. This specifies that the server will run on port 3001.
+  
+  ```
+NEXT_PUBLIC_BACKEND_DOMAIN=http://localhost:3001  
+```
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
+
+### Running the frontend
+
+Run the front end using the following command
+
+  ```
+  npm run dev
+  ```
+
+<p align="right">(<a href="#top">back to top</a>)</p>
 
 
 <!-- ROADMAP -->
 ## Roadmap
 
-- [x] Add Changelog
-- [x] Add back to top links
-- [ ] Add Additional Templates w/ Examples
-- [ ] Add "components" document to easily copy & paste sections of the readme
-- [ ] Multi-language Support
-    - [ ] Chinese
-    - [ ] Spanish
+- [x] Importing participants
+- [x] Choosing in-built or custom templates
+- [x] Sending email to the participants
+- [x] Uploading on IPFS
+- [ ] Verifying the document by comparing the IPFS UID
 
-See the [open issues](https://github.com/othneildrew/Best-README-Template/issues) for a full list of proposed features (and known issues).
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -206,9 +196,7 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 <!-- CONTACT -->
 ## Contact
 
-Your Name - [@your_twitter](https://twitter.com/your_username) - email@example.com
-
-Project Link: [https://github.com/your_username/repo_name](https://github.com/your_username/repo_name)
+Reach out to us on email : kumaragurut7@gmail.com if you have any queries.
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -221,12 +209,7 @@ Use this space to list resources you find helpful and would like to give credit 
 
 * [Choose an Open Source License](https://choosealicense.com)
 * [GitHub Emoji Cheat Sheet](https://www.webpagefx.com/tools/emoji-cheat-sheet)
-* [Malven's Flexbox Cheatsheet](https://flexbox.malven.co/)
 * [Malven's Grid Cheatsheet](https://grid.malven.co/)
-* [Img Shields](https://shields.io)
-* [GitHub Pages](https://pages.github.com)
-* [Font Awesome](https://fontawesome.com)
-* [React Icons](https://react-icons.github.io/react-icons/search)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
