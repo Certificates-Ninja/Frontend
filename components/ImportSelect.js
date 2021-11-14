@@ -3,6 +3,7 @@ import { ProgressBar, Step } from "react-step-progress-bar";
 import "react-step-progress-bar/styles.css";
 import axios from "axios";
 import Router from "next/router";
+import { Link } from "@chakra-ui/layout";
 
 export default function ImportSelect() {
   const [importType, setImportType] = useState("file");
@@ -207,15 +208,17 @@ export default function ImportSelect() {
                       </div>
                     )}
                     <br />
-                    <div className="mt-4 mb-2 sm:mb-4">
-                      <button
-                        type="submit"
-                        className="inline-flex items-center justify-center w-full h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-black hover:bg-gray-700 focus:shadow-outline focus:outline-none"
-                        onClick={handleSubmit}
-                      >
-                        Continue
-                      </button>
-                    </div>
+                    <Link href="/certificate">
+                      <div className="mt-4 mb-2 sm:mb-4">
+                        <button
+                          type="submit"
+                          className="inline-flex items-center justify-center w-full h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-black hover:bg-gray-700 focus:shadow-outline focus:outline-none"
+                          onClick={handleSubmit}
+                        >
+                          Continue
+                        </button>
+                      </div>
+                    </Link>
                   </form>
                 </div>
               </div>

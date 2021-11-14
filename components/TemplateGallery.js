@@ -1,6 +1,9 @@
 export const TemplateGallery = ({ submitData }) => {
   return (
-    <div className="px-4 py-12 mx-auto lg:max-w-screen-xl  lg:px-8 lg:py-20">
+    <div
+      id="templates"
+      className="px-4 py-12 mx-auto lg:max-w-screen-xl  lg:px-8 lg:py-20"
+    >
       <div className="grid gap-5 lg:grid-cols-3 sm:max-w-sm sm:mx-auto lg:max-w-full">
         <div className="overflow-hidden transition-shadow duration-300 bg-yellow-400 rounded">
           <a aria-label="Article" onClick={() => submitData("sample")}>

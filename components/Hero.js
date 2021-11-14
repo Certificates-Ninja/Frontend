@@ -39,9 +39,12 @@ export const Hero = () => {
             </p>
           </div>
           <div className="flex flex-col items-center md:flex-row">
-            <a href="#_" class="relative mt-5">
+            <a href="/import" class="relative mt-5">
               <span class="absolute top-0 left-0 w-full h-full mt-1 ml-1 bg-black rounded"></span>
-              <span class="relative inline-block w-full h-full px-8 py-3 text-base font-bold bg-white border-2 border-black rounded hover:bg-yellow-400 xl:text-xl fold-bold">
+              <span
+                style={{ fontFamily: "Poppins" }}
+                class="relative inline-block w-full h-full px-8 py-3 text-base font-bold bg-white border-2 border-black rounded hover:bg-yellow-400 xl:text-xl fold-bold"
+              >
                 Create Certificates
               </span>
             </a>

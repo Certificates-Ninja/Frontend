@@ -4,6 +4,7 @@ import "react-step-progress-bar/styles.css";
 import { TemplateGallery } from "./TemplateGallery";
 import axios from "axios";
 import Router from "next/router";
+import { Link } from "@chakra-ui/layout";
 
 export default function CertificateSelect() {
   const [templateType, setTemplateType] = useState("existing");
@@ -211,14 +212,16 @@ export default function CertificateSelect() {
                       )}
 
                       {templateType === "existing" ? (
-                        <div className="mt-2 sm:mb-4">
-                          <button
-                            type="submit"
-                            className="inline-flex items-center justify-center w-full h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-black hover:bg-gray-700 focus:shadow-outline focus:outline-none"
-                          >
-                            Browse Templates
-                          </button>
-                        </div>
+                        <Link href="/certificate#templates">
+                          <div className="mt-2 sm:mb-4">
+                            <button
+                              type="submit"
+                              className="inline-flex items-center justify-center w-full h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-black hover:bg-gray-700 focus:shadow-outline focus:outline-none"
+                            >
+                              Browse Templates
+                            </button>
+                          </div>
+                        </Link>
                       ) : (
                         ""
                       )}

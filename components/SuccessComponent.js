@@ -42,8 +42,7 @@ export default function SuccessComponent() {
                   completed sending certificates through email!
                 </h2>
                 <p className="text-base text-gray-700 md:text-lg">
-                  Hurray. Your certificates are successfully delivered to all
-                  the participants.
+                  Emails might take a couple of minutes to be received.
                 </p>
               </div>
             </div>

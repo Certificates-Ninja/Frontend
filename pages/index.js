@@ -12,8 +12,12 @@ export default function Home() {
       <Navbar />
       <Hero />
       <Features />
-      <HowToUse />
-      <Team />
+      <div id="howtouse">
+        <HowToUse />
+      </div>
+      <div id="team">
+        <Team />
+      </div>
       <Footer />
     </div>
   );

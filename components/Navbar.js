@@ -1,12 +1,16 @@
 import { Fragment } from "react";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
 import { BellIcon, MenuIcon, XIcon } from "@heroicons/react/outline";
+import { Link } from "@chakra-ui/layout";
 
 const navigation = [
-  { name: "Github", href: "#", current: true },
-  { name: "Team", href: "#", current: false },
-  { name: "How to use", href: "#", current: false },
-  { name: "Our supporters", href: "#", current: false },
+  {
+    name: "Github",
+    href: "https://github.com/orgs/Certificates-Ninja",
+    current: false,
+  },
+  { name: "Team", href: "#team", current: true },
+  { name: "How to use", href: "#howtouse", current: false },
 ];
 
 function classNames(...classes) {
@@ -66,26 +70,33 @@ export default function Navbar() {
               </div>
               <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
                 {/* Profile dropdown */}
-                <a href="#_" class="relative mt-5">
-                  <span class="absolute top-0 left-0 w-full h-full mt-1 ml-1 bg-black rounded"></span>
-                  <span class="relative inline-flex w-full h-full px-8 py-3 items-center text-base font-bold bg-white border-2 border-black rounded hover:bg-yellow-400 xl:text-xl fold-bold">
-                    Get Started
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                      class="flex-shrink-0 w-4 h-4 ml-3"
+                <div className="flex flex-col items-center md:flex-row">
+                  <a href="/import" class="relative mt-5">
+                    <span class="absolute top-0 left-0 w-full h-full mt-1 ml-1 bg-black rounded"></span>
+                    <span
+                      style={{ fontFamily: "Poppins" }}
+                      class="relative inline-flex w-full h-full px-8 py-3 text-base font-bold bg-white border-2 border-black rounded hover:bg-yellow-400 xl:text-xl fold-bold"
                     >
-                      <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
-                        d="M14 5l7 7m0 0l-7 7m7-7H3"
-                      />
-                    </svg>
-                  </span>
-                </a>
+                      Get started
+                      <div className="mt-2">
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          stroke="currentColor"
+                          class="flex-shrink-0 w-4 h-4 ml-3"
+                        >
+                          <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M14 5l7 7m0 0l-7 7m7-7H3"
+                          />
+                        </svg>
+                      </div>
+                    </span>
+                  </a>
+                </div>
               </div>
             </div>
           </div>
