@@ -69,26 +69,6 @@ This section should list any major frameworks/libraries used to bootstrap your p
 This is an example of how you may give instructions on setting up your project locally.
 To get a local copy up and running follow these simple example steps.
 
-### Clone the repository
-
-Download the code from this repository or clone the repository using the following command
-
-```
-  git clone https://github.com/Certificates-Ninja/Frontend.git
-  ```
-
-### Installing the dependencies
-
-Install the required dependencies using the following command
-
-  ```
-  npm install
-  ```
-
-<p align="right">(<a href="#top">back to top</a>)</p>
-
-
-
 ### Setting up .env
 
 Rename the `.env.example` file into `.env` or alternatively create a file called `.env` with the following. This specifies that the server will run on port 3001.
